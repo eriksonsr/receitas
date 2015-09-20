@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 class MY_Loader extends CI_Loader {
     
     public function template($view, $menu=null, $dados=null) {
-        //$this->view("slices/header");
+        $this->view("slices/header");
         if($menu){
             if(isset($dados['grupos'])){
                 $this->view("slices/menus/menu_{$menu}", $dados);
@@ -22,6 +22,6 @@ class MY_Loader extends CI_Loader {
 	    }else{
         	$this->view("$view", $dados);
     	}
-        //$this->view("slices/footer");
+        $this->view("slices/footer");
     }
 }

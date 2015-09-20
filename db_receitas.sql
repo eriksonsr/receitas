@@ -51,6 +51,7 @@ CREATE TABLE `tb_receitas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
+  `qtd_ing_principais` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_tb_receitas_tb_usuarios1_idx` (`id_usuario`),
   CONSTRAINT `fk_tb_receitas_tb_usuarios1` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -156,4 +157,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-20 15:47:36
+-- Dump completed on 2015-09-20 16:05:18

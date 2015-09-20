@@ -4,7 +4,7 @@ USE `db_receitas`;
 --
 -- Host: 127.0.0.1    Database: db_receitas
 -- ------------------------------------------------------
--- Server version	5.5.44-0ubuntu0.14.04.1
+-- Server version 5.5.44-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -38,29 +38,6 @@ CREATE TABLE `tb_categorias` (
 LOCK TABLES `tb_categorias` WRITE;
 /*!40000 ALTER TABLE `tb_categorias` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_categorias` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tb_ingredientes`
---
-
-DROP TABLE IF EXISTS `tb_ingredientes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_ingredientes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tb_ingredientes`
---
-
-LOCK TABLES `tb_ingredientes` WRITE;
-/*!40000 ALTER TABLE `tb_ingredientes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_ingredientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -127,14 +104,12 @@ DROP TABLE IF EXISTS `tb_receitas_tem_ingredientes`;
 CREATE TABLE `tb_receitas_tem_ingredientes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_receita` int(11) NOT NULL,
-  `id_ingrediente` int(11) NOT NULL,
+  `ingrediente` varchar(200) NOT NULL,
   `principal` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_tb_receitas_has_tb_ingredientes_tb_ingredientes1_idx` (`id_ingrediente`),
   KEY `fk_tb_receitas_has_tb_ingredientes_tb_receitas1_idx` (`id_receita`),
-  CONSTRAINT `fk_tb_receitas_has_tb_ingredientes_tb_receitas1` FOREIGN KEY (`id_receita`) REFERENCES `tb_receitas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tb_receitas_has_tb_ingredientes_tb_ingredientes1` FOREIGN KEY (`id_ingrediente`) REFERENCES `tb_ingredientes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_tb_receitas_has_tb_ingredientes_tb_receitas1` FOREIGN KEY (`id_receita`) REFERENCES `tb_receitas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -181,4 +156,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-20 15:18:49
+-- Dump completed on 2015-09-20 15:47:36

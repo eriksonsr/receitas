@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 		$(".elementos_criados").remove();
 		p = $("<p class='elementos_criados'>Quais são os " + qtd_ingredientes + " ingredientes que você possui?</p>");
-		$('#container_form_busca_receita').append(p);
+		$('#container_form_busca_receita fieldset').append(p);
 
 		for(i = 1; i <= qtd_ingredientes; i++){
 			label = $('<label>', {
@@ -13,7 +13,7 @@ $(document).ready(function() {
 				for: 'ingrediente_' + i,
 				text: 'Ingrediente ' + i + ": "
 			});
-			$('#container_form_busca_receita').append(label);
+			$('#container_form_busca_receita fieldset').append(label);
 
 			input = $('<input>', {
 				class: 'elementos_criados',
@@ -21,14 +21,14 @@ $(document).ready(function() {
 				name: 'ingrediente_' + i,
 				id: 'ingrediente_' + i
 			});
-			$('#container_form_busca_receita').append(input);
-			$('#container_form_busca_receita').append("<br class='elementos_criados'>");
+			$('#container_form_busca_receita fieldset').append(input);
+			$('#container_form_busca_receita fieldset').append("<br class='elementos_criados'>");
 		}
 		input = $('<input>', {
 			class: 'elementos_criados',
 			type: 'submit',
 			value: 'Buscar'
 		});
-		$('#container_form_busca_receita').append(input);
+		$('#container_form_busca_receita fieldset').append(input);
 	});
 });

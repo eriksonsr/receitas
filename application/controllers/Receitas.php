@@ -10,6 +10,10 @@ class Receitas extends CI_Controller {
         
     }
 
+    public function index(){
+    	$this->buscaReceita();
+    }
+
 	public function buscaReceita(){
 		$this->load->template('receitas/busca_receita.php');
 	}

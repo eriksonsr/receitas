@@ -18,8 +18,13 @@ class Receitas extends CI_Controller {
 		$ingredientes = $this->input->post();
 		
 		$result = $this->receitas->buscaReceita($ingredientes);
-		echo "<pre>";
-		print_r($result);
+
+		if(count($result) < 1){
+			echo "Não foi encontrada nenhuma receita...";
+		}else{
+			echo "<pre>";
+			print_r($result);
+		}
 		
 	}
 }

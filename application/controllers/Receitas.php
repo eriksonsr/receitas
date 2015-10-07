@@ -31,4 +31,13 @@ class Receitas extends CI_Controller {
 		}
 		
 	}
+
+	public function cadastrarReceita(){
+		$this->load->template("receitas/cadastrar_receita");
+	}
+
+	public function salvarReceita(){
+		echo "<pre>";
+		print_r($_POST);
+	}
 }

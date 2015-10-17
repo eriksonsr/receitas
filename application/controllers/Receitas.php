@@ -37,7 +37,19 @@ class Receitas extends CI_Controller {
 	}
 
 	public function salvarReceita(){
-		echo "<pre>";
-		print_r($_POST);
+		$this->load->library("form_validation");    
+        $this->form_validation->set_rules("nome", "nome", "required");
+        $this->form_validation->set_rules("qtd_ingredientes", "qtd_ingredientes", "required");
+        $this->form_validation->set_error_delimiters("<p class='danger alert-danger'>", "</p>");
+        $sucesso = $this->form_validation->run();
+
+        if($sucesso){
+			$receita = $this->input->post();
+			$id_receita = $this->receitas->salvarReceita($receita);
+		    //$this->session->set_flashdata("successo", "Pessoa adicionada com sucesso!");
+		    //redirect(base_url("index.php/pessoas/cadastrar"));
+    	}else{
+    		$this->index();
+    	}
 	}
 }

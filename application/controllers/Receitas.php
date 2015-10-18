@@ -7,6 +7,7 @@ class Receitas extends CI_Controller {
 		parent::__construct();
 
         $this->load->model('Receitas_model','receitas');
+        $this->load->model('Ingredientes_model','ingredientes');
         
     }
 
@@ -37,7 +38,24 @@ class Receitas extends CI_Controller {
 	}
 
 	public function salvarReceita(){
-		echo "<pre>";
-		print_r($_POST);
+		$this->load->library("form_validation");    
+        $this->form_validation->set_rules("nome", "nome", "required");
+        $this->form_validation->set_rules("qtd_ingredientes", "qtd_ingredientes", "required");
+        $this->form_validation->set_error_delimiters("<p class='danger alert-danger'>", "</p>");
+        $sucesso = $this->form_validation->run();
+
+        if($sucesso){
+			$receita = $this->input->post();
+			$id_receita = $this->receitas->salvarReceita($receita);
+
+			if($this->ingredientes->salvarIngredientes($receita, $id_receita)){
+				$this->session->set_flashdata("successo", "Receita adicionada com sucesso!");
+			}else{
+				$this->session->set_flashdata("erro", "Ocorreu um erro ao cadastrar a receita.");
+			}
+		    redirect(base_url("index.php/Receitas/cadastrarReceita"));
+    	}else{
+    		$this->index();
+    	}
 	}
 }

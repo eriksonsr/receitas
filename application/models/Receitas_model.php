@@ -1,6 +1,11 @@
 <?php 
 
 class Receitas_model extends CI_Model{
+    var $id_usuario = 1;
+    var $nome;
+    var $qtd_ing_principais;
+    var $modo_preparo;
+
 	public function buscaReceita($ingredientes){
                 $this->db->select('id, nome, modo_preparo');
                 $this->db->from('tb_receitas');
@@ -39,5 +44,20 @@ class Receitas_model extends CI_Model{
                         }
                 }
                 return $matchs;
+        }
+
+        public function salvarReceita($receita){
+            $this->qtd_ing_principais = 0;
+            
+            for ($i=1; $i <= $receita['qtd_ingredientes'] ; $i++) {
+                    if(isset($receita["obrigatorio_{$i}"])){
+                        $this->qtd_ing_principais++;
+                    }
+            }
+            $this->nome = $receita['nome'];
+            $this->modo_preparo = $receita['modo_preparo'];
+            $this->db->insert('tb_receitas', $this);
+
+            return $this->db->insert_id();
         }
 }

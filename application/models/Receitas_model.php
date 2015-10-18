@@ -50,7 +50,7 @@ class Receitas_model extends CI_Model{
             $this->qtd_ing_principais = 0;
             
             for ($i=1; $i <= $receita['qtd_ingredientes'] ; $i++) {
-                    if($receita["obrgiatorio_{$i}"]){
+                    if(isset($receita["obrigatorio_{$i}"])){
                         $this->qtd_ing_principais++;
                     }
             }

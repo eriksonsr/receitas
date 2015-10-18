@@ -7,6 +7,7 @@ class Receitas extends CI_Controller {
 		parent::__construct();
 
         $this->load->model('Receitas_model','receitas');
+        $this->load->model('Ingredientes_model','ingredientes');
         
     }
 
@@ -46,8 +47,13 @@ class Receitas extends CI_Controller {
         if($sucesso){
 			$receita = $this->input->post();
 			$id_receita = $this->receitas->salvarReceita($receita);
-		    //$this->session->set_flashdata("successo", "Pessoa adicionada com sucesso!");
-		    //redirect(base_url("index.php/pessoas/cadastrar"));
+
+			if($this->ingredientes->salvarIngredientes($receita, $id_receita)){
+				$this->session->set_flashdata("successo", "Receita adicionada com sucesso!");
+			}else{
+				$this->session->set_flashdata("erro", "Ocorreu um erro ao cadastrar a receita.");
+			}
+		    redirect(base_url("index.php/Receitas/cadastrarReceita"));
     	}else{
     		$this->index();
     	}

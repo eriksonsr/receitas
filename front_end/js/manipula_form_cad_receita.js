@@ -23,11 +23,26 @@ $(document).ready(function() {
 			});
 			$('#container_form_cadastra_receita fieldset').append(input);
 
+			label = $('<label>', {
+				class: 'elementos_criados',
+				for: 'quantidade_' + i,
+				text: 'Quantidade'
+			});
+			$('#container_form_cadastra_receita fieldset').append(label);
+
+			input = $('<input>', {
+				class: 'elementos_criados',
+				type: 'text',
+				name: 'quantidade_' + i,
+				id: 'quantidade_' + i
+			});
+			$('#container_form_cadastra_receita fieldset').append(input);
+
 			checkbox = $('<input>', {
 				class: 'elementos_criados',
 				type: 'checkbox',
-				name: 'obrgiatorio_' + i,
-				id: 'obrgiatorio_' + i
+				name: 'obrigatorio_' + i,
+				id: 'obrigatorio_' + i
 			});
 			$('#container_form_cadastra_receita fieldset').append(checkbox);
 

@@ -1,5 +1,11 @@
 $(document).ready(function() {
 	var qtd_ingredientes = 0;
+	var unidades;
+
+	$.getJSON(location.origin + "index.php/Unidades/aListar", function(data){
+		unidades = data;
+    });
+ 
 	$("#qtd_ingredientes").keyup(function(){
 		qtd_ingredientes = $("#qtd_ingredientes").val();
 
@@ -37,6 +43,28 @@ $(document).ready(function() {
 				id: 'quantidade_' + i
 			});
 			$('#container_form_cadastra_receita fieldset').append(input);
+
+			label = $('<label>', {
+				class: 'elementos_criados',
+				for: 'unidade_' + i,
+				text: 'Unidade de medida'
+			});
+			$('#container_form_cadastra_receita fieldset').append(label);
+
+			select = $('<select>', {
+				class: 'elementos_criados',
+				name: 'unidade_' + i,
+				id: 'unidade_' + i
+			});
+
+	        $.each(unidades, function(i){
+	        	option = $('<option>', {
+	        		value: unidades[i].unidade,
+	        		text: unidades[i].nome
+	        	});
+	        	$(select).append(option);
+	        });
+			$('#container_form_cadastra_receita fieldset').append(select);
 
 			checkbox = $('<input>', {
 				class: 'elementos_criados',

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container conteudo">
 	<div class="row">
 		<div class="col-md-12" id='container_form_cadastra_receita'>
 			<?php

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container conteudo">
 	<div class="row">
 		<div class="col-md-5" id='container_form_busca_receita'>
 			<?php

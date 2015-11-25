@@ -22,15 +22,8 @@ class Receitas extends CI_Controller {
 	public function resultadoBuascaReceita(){
 		$ingredientes = $this->input->post();
 		
-		$result = $this->receitas->buscaReceita($ingredientes);
-
-		if(count($result) < 1){
-			echo "Não foi encontrada nenhuma receita...";
-		}else{
-			echo "<pre>";
-			print_r($result);
-		}
-		
+		$dados['receitas'] = $this->receitas->buscaReceita($ingredientes);
+		$this->load->template('receitas/result_busca_receita.php', "", $dados);
 	}
 
 	public function cadastrarReceita(){

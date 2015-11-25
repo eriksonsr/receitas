@@ -6,8 +6,8 @@
     <ul class="nav navbar-nav navbar-right">
      <li><a href="<?= base_url() ?>">RECEITAS</a></li>
      <li><a href="#">MAIS PROCURADAS</a></li>
-     <li><a href="#">SOBRE NÓS</a></li>
-     <li><a href="#">CONTATO</a></li>
+     <li><a href="<?= base_url("index.php/empresa/sobre") ?>">SOBRE NÓS</a></li>
+     <li><a href="<?= base_url("index.php/empresa/contato") ?>">CONTATO</a></li>
      <li><a href="#">FAZER LOGIN</a></li>
    </ul>
  </div>

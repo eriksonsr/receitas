@@ -16,7 +16,7 @@ class Receitas_model extends CI_Model{
                 foreach ($result_receitas as $receita) {
                         $result_ingredientes = $this->buscaIngredientesDaReceita($receita);
                         $result_verifica_se_contem_ingredientes = $this->verificaSeContemIngredientes($result_ingredientes, $ingredientes);
-
+                        
                         if($result_verifica_se_contem_ingredientes == $ingredientes['qtd_ingredientes']){
                                 $receita['ingredientes'] = $result_ingredientes;
                                 array_push($receitas, $receita);

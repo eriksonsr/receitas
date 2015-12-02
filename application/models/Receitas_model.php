@@ -7,7 +7,7 @@ class Receitas_model extends CI_Model{
     var $modo_preparo;
 
 	public function buscaReceita($ingredientes){
-                $this->db->select('id, nome, modo_preparo');
+                $this->db->select('id, nome');
                 $this->db->from('tb_receitas');
                 $this->db->where('qtd_ing_principais', $ingredientes['qtd_ingredientes']);
 
@@ -59,5 +59,13 @@ class Receitas_model extends CI_Model{
             $this->db->insert('tb_receitas', $this);
 
             return $this->db->insert_id();
+        }
+
+        public function exibeReceita($id_receita){
+            $this->db->select('rec.id, rec.nome, rec.modo_preparo, rec_ing.ingrediente, rec_ing.quantidade');
+            $this->db->from('tb_receitas as rec');
+            $this->db->join('tb_receitas_tem_ingredientes as rec_ing', 'rec_ing.id_receita = rec.id', 'inner');
+            $this->db->where('rec.id', $id_receita);
+            return $this->db->get()->result();
         }
 }

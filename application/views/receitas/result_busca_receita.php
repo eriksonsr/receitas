@@ -5,17 +5,10 @@
 			if(count($receitas) < 1){
 				echo "<h3>Sua busca não retornou nenhum resultado</h3>";
 			}else{
+				echo "<h4>Encontramos as seguintes receitas com os ingredientes que você possui:</h4>";
 				foreach ($receitas as $receita) {
-					echo "<h4>Receita: " . $receita['nome'] . "</h4>";
-					echo "<h4>Ingredientes:</h4>";
-
-					echo "<ul>";
-					foreach ($receita['ingredientes'] as $ingrediente) {
-						echo "<li>" . $ingrediente['ingrediente'] . "</li>";
-					}
-					echo "</ul>";
-					echo "<h4>Modo de preparo:</h4>";
-					echo "<p>" . $receita['modo_preparo'] . "</p>";
+					echo anchor(base_url("index.php/receitas/exibeReceita/" . $receita['id']), $receita['nome']);
+					echo "<br>";
 				}
 			}
 			?>

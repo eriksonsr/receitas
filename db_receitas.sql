@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `db_receitas` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `db_receitas`;
--- MySQL dump 10.13  Distrib 5.5.44, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.46, for debian-linux-gnu (x86_64)
 --
 -- Host: 127.0.0.1    Database: db_receitas
 -- ------------------------------------------------------
--- Server version	5.5.44-0ubuntu0.14.04.1
+-- Server version	5.5.46-0ubuntu0.14.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -53,10 +53,13 @@ CREATE TABLE `tb_receitas` (
   `nome` varchar(100) NOT NULL,
   `qtd_ing_principais` int(11) NOT NULL,
   `modo_preparo` longtext NOT NULL,
+  `qtd_acessos` int(11) DEFAULT '0',
+  `moderada` int(11) DEFAULT '0',
+  `aprovada` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_tb_receitas_tb_usuarios1_idx` (`id_usuario`),
   CONSTRAINT `fk_tb_receitas_tb_usuarios1` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +68,7 @@ CREATE TABLE `tb_receitas` (
 
 LOCK TABLES `tb_receitas` WRITE;
 /*!40000 ALTER TABLE `tb_receitas` DISABLE KEYS */;
-INSERT INTO `tb_receitas` VALUES (2,1,'Sanduiche',2,'Passe margarina no pão, adicione o queijo e o presunto, feche o sanduiche e leve a torradeira por 5 minutos'),(4,1,'Enroladinho',2,'Enrole a salsicha na pastelina e frite'),(20,1,'Baguete de queijo',2,'Abra o pão e adicione o queijo');
+INSERT INTO `tb_receitas` VALUES (1,1,'enroladinho',2,'Testeeeeee!',0,0,0);
 /*!40000 ALTER TABLE `tb_receitas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,14 +110,14 @@ DROP TABLE IF EXISTS `tb_receitas_tem_ingredientes`;
 CREATE TABLE `tb_receitas_tem_ingredientes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_receita` int(11) NOT NULL,
-  `ingrediente` int(11) NOT NULL,
+  `ingrediente` varchar(200) NOT NULL,
   `quantidade` varchar(30) NOT NULL,
   `unidade_medida` varchar(45) NOT NULL,
   `principal` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_tb_receitas_has_tb_ingredientes_tb_receitas1_idx` (`id_receita`),
   CONSTRAINT `fk_tb_receitas_has_tb_ingredientes_tb_receitas1` FOREIGN KEY (`id_receita`) REFERENCES `tb_receitas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,8 +126,33 @@ CREATE TABLE `tb_receitas_tem_ingredientes` (
 
 LOCK TABLES `tb_receitas_tem_ingredientes` WRITE;
 /*!40000 ALTER TABLE `tb_receitas_tem_ingredientes` DISABLE KEYS */;
-INSERT INTO `tb_receitas_tem_ingredientes` VALUES (1,2,0,'2','',1),(2,2,0,'1','',1),(3,2,0,'0','',0),(4,2,0,'10','',0),(6,4,0,'1','',1),(8,4,0,'1','',1),(11,20,0,'1','',1),(12,20,0,'2','',1);
+INSERT INTO `tb_receitas_tem_ingredientes` VALUES (1,1,'Salsicha','2','',1),(2,1,'Pastelina','2','',1);
 /*!40000 ALTER TABLE `tb_receitas_tem_ingredientes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_unidades_medida`
+--
+
+DROP TABLE IF EXISTS `tb_unidades_medida`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_unidades_medida` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `unidade` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_unidades_medida`
+--
+
+LOCK TABLES `tb_unidades_medida` WRITE;
+/*!40000 ALTER TABLE `tb_unidades_medida` DISABLE KEYS */;
+INSERT INTO `tb_unidades_medida` VALUES (1,'Colher de sopa','Colher de sopa'),(2,'Colher de chá','Colher de chá'),(3,'Quilograma','kg'),(5,'Miligrama','mg'),(6,'Fatia','fatia');
+/*!40000 ALTER TABLE `tb_unidades_medida` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -162,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-25 18:36:51
+-- Dump completed on 2015-12-02  1:05:39

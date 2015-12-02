@@ -42,6 +42,6 @@ a:focus, a:hover {
 	color: #FFFFFF;
 }
 
-input {
+input, textarea, option, select {
 	color: #000000;
 }

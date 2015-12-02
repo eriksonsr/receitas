@@ -51,4 +51,9 @@ class Receitas extends CI_Controller {
     		$this->index();
     	}
 	}
+
+	public function exibeReceita($id_receita){
+		$dados['receitas'] = $this->receitas->exibeReceita($id_receita);
+		$this->load->template('receitas/exibe_receita.php', "", $dados);
+	}
 }

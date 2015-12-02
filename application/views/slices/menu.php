@@ -8,7 +8,7 @@
      <li><a href="<?= base_url("index.php/receitas/maisAcessadas") ?>">MAIS ACESSADAS</a></li>
      <li><a href="<?= base_url("index.php/empresa/sobre") ?>">SOBRE NÓS</a></li>
      <li><a href="<?= base_url("index.php/empresa/contato") ?>">CONTATO</a></li>
-     <li><a href="#">FAZER LOGIN</a></li>
+     <li><a href="<?= base_url("index.php/usuarios/login") ?>">FAZER LOGIN</a></li>
    </ul>
  </div>
 </nav>

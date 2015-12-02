@@ -52,8 +52,16 @@ class Receitas extends CI_Controller {
     	}
 	}
 
-	public function exibeReceita($id_receita){
+	public function exibeReceita($id_receita)
+	{
+		$this->receitas->atualizaVisualizacoes($id_receita);
 		$dados['receitas'] = $this->receitas->exibeReceita($id_receita);
 		$this->load->template('receitas/exibe_receita.php', "", $dados);
+	}
+
+	public function maisAcessadas()
+	{
+		$dados['mais_acessadas'] = $this->receitas->maisAcessadas();
+		$this->load->template('receitas/mais_acessadas.php', "", $dados);
 	}
 }

@@ -7,6 +7,7 @@ class Receitas extends CI_Controller {
 		parent::__construct();
 
         $this->load->model('Receitas_model','receitas');
+        $this->load->model('ReceitasAcessadas_model','receitasAcessadas');
         $this->load->model('Ingredientes_model','ingredientes');
         
     }
@@ -55,6 +56,7 @@ class Receitas extends CI_Controller {
 	public function exibeReceita($id_receita)
 	{
 		$this->receitas->atualizaVisualizacoes($id_receita);
+		$this->receitasAcessadas->salvaReceitaAcessada($id_receita, 1);
 		$dados['receitas'] = $this->receitas->exibeReceita($id_receita);
 		$this->load->template('receitas/exibe_receita.php', "", $dados);
 	}

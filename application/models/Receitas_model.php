@@ -46,7 +46,7 @@ class Receitas_model extends CI_Model{
         return $matchs;
     }
 
-     public function salvarReceita($receita){
+     public function salvaReceita($receita){
         $this->qtd_ing_principais = 0;
 
         for ($i=1; $i <= $receita['qtd_ingredientes'] ; $i++) {

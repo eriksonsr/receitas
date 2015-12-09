@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-md-12" id='container_form_cadastra_receita'>
 			<?php
-				echo form_open('receitas/salvarReceita');
+				echo form_open('Receitas/salvarReceita');
             		echo form_fieldset('Cadastrar receita:');
             			echo form_label('Nome da receita?', 'nome');
             			echo form_input(array(

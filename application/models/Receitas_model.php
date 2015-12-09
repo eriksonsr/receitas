@@ -1,7 +1,7 @@
 <?php 
 
 class Receitas_model extends CI_Model{
-    var $id_usuario = 1;
+    var $id_usuario;
     var $nome;
     var $qtd_ing_principais;
     var $modo_preparo;
@@ -46,7 +46,7 @@ class Receitas_model extends CI_Model{
         return $matchs;
     }
 
-     public function salvaReceita($receita){
+     public function salvarReceita($receita, $id_usuario){
         $this->qtd_ing_principais = 0;
 
         for ($i=1; $i <= $receita['qtd_ingredientes'] ; $i++) {
@@ -54,6 +54,7 @@ class Receitas_model extends CI_Model{
                 $this->qtd_ing_principais++;
             }
         }
+        $this->id_usuario = $id_usuario;
         $this->nome = $receita['nome'];
         $this->modo_preparo = $receita['modo_preparo'];
         $this->db->insert('tb_receitas', $this);

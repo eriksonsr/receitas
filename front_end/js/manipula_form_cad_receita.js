@@ -2,7 +2,7 @@ $(document).ready(function() {
 	var qtd_ingredientes = 0;
 	var unidades;
 
-	$.getJSON(location.origin + "/html/receitas/index.php/Unidades/aListar", function(data){
+	$.getJSON(location.origin + "/index.php/Unidades/aListar", function(data){
 		unidades = data;
     });
  

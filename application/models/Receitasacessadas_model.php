@@ -19,4 +19,14 @@ class ReceitasAcessadas_model extends CI_Model{
 
         return $this->db->insert_id();
     }
+
+    public function listarReceitasAcessadas($id_usuario){
+        $this->db->select('r.nome, ra.dt_acesso, ra.hr_acesso, ra.id_receita');
+        $this->db->from('tb_receitas_acessadas_por_usuarios ra');
+        $this->db->join('tb_receitas r', 'r.id = ra.id_receita', 'inner');
+        $this->db->where('ra.id_usuario', $id_usuario);
+        $this->db->limit(10);
+        $this->db->order_by('ra.dt_acesso, ra.hr_acesso', 'desc');
+        return $this->db->get()->result();
+    }
 }
